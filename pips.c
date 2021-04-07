@@ -67,12 +67,12 @@ void PIPS_destroyGenerator(pips_generator_t *generator)
 
 void PIPS_generate(pips_generator_t *generator, size_t seconds)
 {
-    int finite = !!seconds;
+    int forever = !!seconds;
     int running = PIPS_TRUE;
     do {
         memset(generator->buffer, 0, generator->buffer_size);
         running = generator->info.callback(generator->buffer, generator->info.sample_rate, generator->info.channels, generator->info.user_data);
-        if(finite)
+        if(forever)
             running = running && seconds--;
         write(generator->info.write_fileno, generator->buffer, generator->buffer_size);
     } while(running == PIPS_TRUE);
