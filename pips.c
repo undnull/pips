@@ -75,5 +75,5 @@ void PIPS_generate(pips_generator_t *generator, size_t seconds)
         if(forever)
             running = running && seconds--;
         write(generator->info.write_fileno, generator->buffer, generator->buffer_size);
-    } while(running == PIPS_TRUE);
+    } while(running);
 }
