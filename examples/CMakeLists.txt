@@ -1,0 +1,7 @@
+function(add_example_executable target_name)
+    add_executable(${target_name} "${CMAKE_CURRENT_LIST_DIR}/${target_name}.c")
+    target_link_libraries(${target_name} pips m)
+endfunction()
+add_example_executable(sawtooth_31)
+add_example_executable(sine_440)
+add_example_executable(tetris)
