@@ -25,13 +25,10 @@
 #include <stddef.h>
 #include <unistd.h>
 
-#define PIPS_U8     1
-#define PIPS_S16_LE 2
-#define PIPS_S16_BE 3
-#define PIPS_S32_LE 4
-#define PIPS_S32_BE 5
-#define PIPS_F32_LE 6
-#define PIPS_F32_BE 7
+#define PIPS_PCM8   1
+#define PIPS_PCM16  2
+#define PIPS_PCM32  3
+#define PIPS_PCM32F 4
 
 #define PIPS_TRUE   1
 #define PIPS_FALSE  0

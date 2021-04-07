@@ -42,7 +42,7 @@ int main(void)
     // we can calculate the exact frequency that will
     // be produced: 8000 / 256 = 31.25 Hz
     pips_generator_info_t info;
-    info.format = PIPS_U8;
+    info.format = PIPS_PCM8;
     info.sample_rate = 8000;
     info.channels = 1;
     info.callback = callback;

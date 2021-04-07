@@ -29,19 +29,16 @@ static size_t PIPS_calcBufferSize(unsigned int format, unsigned int sample_rate,
 {
     size_t size = 1;
     switch(format) {
-        case PIPS_U8:
+        case PIPS_PCM8:
             size = sizeof(uint_least8_t);
             break;
         
-        case PIPS_S16_LE:
-        case PIPS_S16_BE:
+        case PIPS_PCM16:
             size = sizeof(uint_least16_t);
             break;
         
-        case PIPS_S32_LE:
-        case PIPS_S32_BE:
-        case PIPS_F32_LE:
-        case PIPS_F32_BE:
+        case PIPS_PCM32:
+        case PIPS_PCM32F:
             size = sizeof(uint_least32_t);
             break;
     }

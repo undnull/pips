@@ -42,7 +42,7 @@ int main(void)
     unsigned int data = 0;
 
     pips_generator_info_t info;
-    info.format = PIPS_F32_LE;
+    info.format = PIPS_PCM32F;
     info.sample_rate = 8000;
     info.channels = 1;
     info.callback = callback;

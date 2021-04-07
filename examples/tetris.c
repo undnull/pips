@@ -116,7 +116,7 @@ int main(void)
     // So 9000 / 8000 = 1.125
     // And then 8000 / 1.125 = 7111.11
     pips_generator_info_t info;
-    info.format = PIPS_F32_LE;
+    info.format = PIPS_PCM32F;
     info.sample_rate = 7111; // so it would sound like 9000 Hz
     info.channels = 1;
     info.callback = callback;
