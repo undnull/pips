@@ -77,6 +77,6 @@ void PIPS_generate(pips_generator_t *generator, size_t seconds)
         running = generator->info.callback(generator->buffer, generator->info.sample_rate, generator->info.channels, generator->info.user_data);
         if(finite)
             running = running && seconds--;
-        PIPS_WRITE(generator->buffer, generator->buffer_size);
+        write(generator->info.write_fileno, generator->buffer, generator->buffer_size);
     } while(running == PIPS_TRUE);
 }

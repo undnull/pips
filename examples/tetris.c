@@ -121,6 +121,7 @@ int main(void)
     info.channels = 1;
     info.callback = callback;
     info.user_data = &data;
+    info.write_fileno = STDOUT_FILENO;
 
     pips_generator_t generator;
     if(!PIPS_createGenerator(&generator, &info))

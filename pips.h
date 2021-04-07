@@ -23,6 +23,7 @@
 #ifndef PIPS_H__
 #define PIPS_H__ 1
 #include <stddef.h>
+#include <unistd.h>
 
 #define PIPS_U8     1
 #define PIPS_S16_LE 2
@@ -35,17 +36,13 @@
 #define PIPS_TRUE   1
 #define PIPS_FALSE  0
 
-#ifndef PIPS_WRITE
-#include <stdio.h>
-#define PIPS_WRITE(b, s) fwrite(b, s, 1, stdout)
-#endif
-
 typedef struct pips_generator_info_t {
     unsigned int format;
     unsigned int sample_rate;
     unsigned int channels;
     int(*callback)(void *, unsigned int, unsigned int, void *);
     void *user_data;
+    int write_fileno;
 } pips_generator_info_t;
 
 typedef struct pips_generator_t {
