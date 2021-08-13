@@ -91,7 +91,9 @@ static int callback(void *out, unsigned int samples, unsigned int channels, void
     float *out_f = (float *)out;
     callback_data_t *data_p = (callback_data_t *)data;
     for(unsigned int i = 0; i < samples; i++) {
-        *out_f++ = sinf(beeps[data_p->cur_beep].frequency * i * MX_TAU / samples);
+        *out_f++ = asin(cos(beeps[data_p->cur_beep].frequency * i * MX_TAU / samples)) / 1.5708f;
+        // *out_f++ = fmod(beeps[data_p->cur_beep].frequency * i / samples, 1.0f);
+        // *out_f++ = sinf(beeps[data_p->cur_beep].frequency * i * MX_TAU / samples);
         data_p->beep_timeout -= 1000.0f / samples;
         if(data_p->beep_timeout <= 0.0f) {
             if(++data_p->cur_beep >= NUM_BEEPS)
@@ -103,21 +105,17 @@ static int callback(void *out, unsigned int samples, unsigned int channels, void
     return PIPS_TRUE;
 }
 
-// ./sine_440 | aplay -f FLOAT_LE -r 8000 -c 1
+// ./sine_440 | aplay -f FLOAT_LE -r 44100 -c 1
 int main(void)
 {
     callback_data_t data;
     data.cur_beep = 0;
     data.beep_timeout = beeps[0].ms;
 
-    // Again some sample rate hacks.
-    // The beeps sound better when played back at 9000 Hz
-    // sample rate while we are targeting 8000 Hz.
-    // So 9000 / 8000 = 1.125
     // And then 8000 / 1.125 = 7111.11
     pips_generator_info_t info;
     info.format = PIPS_PCM32F;
-    info.sample_rate = 7111; // so it would sound like 9000 Hz
+    info.sample_rate = 44100;
     info.channels = 1;
     info.callback = callback;
     info.user_data = &data;
